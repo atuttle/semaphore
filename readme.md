@@ -35,6 +35,14 @@ if (flagService.checkForUser( "my_flag", userAttributes )) {
 
 Based on the `userAttributes` and your flag definitions, `checkForUser()` returns true or false.
 
+# Why not just use config settings?
+
+You could do that, sure. But the value proposition of feature flags is that they can be toggled independendtly of deploying code changes to your application, and often much more rapidly. They can take effect as quickly as you can update the flag state on your application.
+
+(How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
+
+ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
+
 ## User Attributes
 
 `userAttributes` is a structure containing... anything you want. You'll want it to be flat (no nested properties), and contain all user-data and environment-data necessary to evaluate a flag. (Or to put it another way: include anything that you might want to use to create user segments.) For example:
