@@ -129,17 +129,7 @@ This is likely to change, but for now here's what they look like:
 
 # Contributing
 
-## How to run the tests locally
-
-Option 1: Use CommandBox:
-
-1. Install [CommandBox](https://www.ortussolutions.com/products/commandbox)
-2. `cd tests && box server start && box testbox run`
-
-Option 2: Use Docker:
-
-1. `docker build -t flagservice:test .`
-2. if it exits with an error, the tests failed and the error output will be displayed. If it exits successfully, the tests passed.
+Please see [Contributing.md](CONTRIBUTING.md)
 
 ## Contributors ✨
 
