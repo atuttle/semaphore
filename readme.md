@@ -4,6 +4,8 @@
 
 ## ⚠️ EARLY DAYS! DANGER! ⚠️
 
+[![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
+
 I have only just begun working on this project and it's not really useful yet. Contributions are welcome, though!
 
 ### What's NOT included? (And may never be...)
@@ -17,6 +19,7 @@ I have only just begun working on this project and it's not really useful yet. C
 - DSL (Domain Specific Language) for defining flags as data
 - Methods for flag CRUD, and evaluation
 - Comprehensive test suite so that you know all of the above is trustworthy
+- [![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
 
 # How does it work?
 
