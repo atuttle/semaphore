@@ -1,4 +1,7 @@
 # A minimalist Feature Flag engine for CFML apps
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
@@ -138,3 +141,23 @@ Option 2: Use Docker:
 
 1. `docker build -t flagservice:test .`
 2. if it exits with an error, the tests failed and the error output will be displayed. If it exits successfully, the tests passed.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://adamtuttle.codes"><img src="https://avatars.githubusercontent.com/u/46990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Tuttle</b></sub></a><br /><a href="https://github.com/atuttle/cfml-feature-flags/commits?author=atuttle" title="Code">💻</a> <a href="#content-atuttle" title="Content">🖋</a> <a href="https://github.com/atuttle/cfml-feature-flags/commits?author=atuttle" title="Documentation">📖</a> <a href="#example-atuttle" title="Examples">💡</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

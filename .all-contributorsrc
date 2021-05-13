@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "atuttle",
+      "name": "Adam Tuttle",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46990?v=4",
+      "profile": "http://adamtuttle.codes",
+      "contributions": [
+        "code",
+        "content",
+        "doc",
+        "example"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "cfml-feature-flags",
+  "projectOwner": "atuttle",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
