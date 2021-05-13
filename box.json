@@ -3,12 +3,12 @@
     "testbox": "^4.2.1+400"
   },
   "installPaths": {
-    "testbox": "testbox/"
+    "testbox": "tests/testbox/"
   },
   "testbox": {
     "runner": [
       {
-        "default": "http://localhost/tests/runner.cfm"
+        "default": "http://localhost/tests/tests/runner.cfm"
       }
     ],
     "directory": "tests.specs"

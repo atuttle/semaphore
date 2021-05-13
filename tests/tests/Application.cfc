@@ -7,5 +7,8 @@ component{
 	this.basePath = getDirectoryFromPath( getCurrentTemplatePath() ).replace('\\','/','ALL').reverse().listDeleteAt(1,'/').reverse();
 	this.mappings["/lib"] = this.basePath;
 	this.mappings[ "/tests" ] = this.basePath & 'tests';
+	this.mappings[ "/testbox" ] = this.basePath & 'testbox';
+
+	fileAppend('mappings.json', serializeJson(this.mappings));
 
 }
