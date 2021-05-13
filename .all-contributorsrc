@@ -16,6 +16,15 @@
         "doc",
         "example"
       ]
+    },
+    {
+      "login": "dominicwatson",
+      "name": "Dominic Watson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/471162?v=4",
+      "profile": "http://domwatson.codes",
+      "contributions": [
+        "tool"
+      ]
     }
   ],
   "contributorsPerLine": 7,
