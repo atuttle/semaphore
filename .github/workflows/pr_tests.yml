@@ -13,5 +13,8 @@ jobs:
         id: git-checkout
         uses: actions/checkout@v2
 
+      - name: pwd
+        run: pwd
+
       - name: Run Service Tests
         run: docker build -t flagservice:test .
