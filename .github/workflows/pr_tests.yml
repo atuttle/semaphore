@@ -19,4 +19,5 @@ jobs:
       - name: Run tests
         uses: pixl8/github-action-box-test@v3
         with:
+          boxjson_dir: /tests
           output_file: /tests/test-results.txt
