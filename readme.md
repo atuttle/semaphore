@@ -23,18 +23,18 @@ I have only just begun working on this project and it's not really useful yet. C
 Wrap features thusly:
 
 ```js
-if (flagService.flagIsEnabledForUser( "my_flag", userAttributes )) {
+if (flagService.checkForUser( "my_flag", userAttributes )) {
 	newImplementation();
 } else {
 	oldImplementation();
 }
 ```
 
-Based on the `userAttributes` and your flag definitions, `flagIsEnabledForUser()` returns true or false.
+Based on the `userAttributes` and your flag definitions, `checkForUser()` returns true or false.
 
 ## User Attributes
 
-User Attributes is a structure containing... anything you want. You'll want it to be flat (no nested properties), and contain all user-data and environment-data necessary to evaluate a flag. (Or to put it another way: include anything that you might want to use to create user segments.) For example:
+`userAttributes` is a structure containing... anything you want. You'll want it to be flat (no nested properties), and contain all user-data and environment-data necessary to evaluate a flag. (Or to put it another way: include anything that you might want to use to create user segments.) For example:
 
 ```js
 {
@@ -102,3 +102,9 @@ This is likely to change, but for now here's what they look like:
 	}
 }
 ```
+
+### Flag Rule Types
+
+- Percentage: A random % of users are in the active segment
+- Attribute Math: You specify an attribute and a comparison (value and operator) and anyone who passes the comparison is in the active segment
+- More to come?
