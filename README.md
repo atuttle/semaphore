@@ -1,5 +1,5 @@
 # A minimalist Feature Flag engine for CFML apps
-[![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
+[![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -23,7 +23,7 @@ I have only just begun working on this project and it's not really useful yet. C
 - DSL (Domain Specific Language) for defining flags as data
 - Methods for flag CRUD, and evaluation
 - Comprehensive test suite so that you know all of the above is trustworthy
-- [![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
+- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
 
 # How does it work?
 
@@ -140,7 +140,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://adamtuttle.codes"><img src="https://avatars.githubusercontent.com/u/46990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Tuttle</b></sub></a><br /><a href="https://github.com/atuttle/cfml-feature-flags/commits?author=atuttle" title="Code">💻</a> <a href="#content-atuttle" title="Content">🖋</a> <a href="https://github.com/atuttle/cfml-feature-flags/commits?author=atuttle" title="Documentation">📖</a> <a href="#example-atuttle" title="Examples">💡</a></td>
+    <td align="center"><a href="http://adamtuttle.codes"><img src="https://avatars.githubusercontent.com/u/46990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Tuttle</b></sub></a><br /><a href="https://github.com/atuttle/semaphore/commits?author=atuttle" title="Code">💻</a> <a href="#content-atuttle" title="Content">🖋</a> <a href="https://github.com/atuttle/semaphore/commits?author=atuttle" title="Documentation">📖</a> <a href="#example-atuttle" title="Examples">💡</a></td>
     <td align="center"><a href="http://domwatson.codes"><img src="https://avatars.githubusercontent.com/u/471162?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dominic Watson</b></sub></a><br /><a href="#tool-dominicwatson" title="Tools">🔧</a></td>
   </tr>
 </table>
