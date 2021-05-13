@@ -11,7 +11,7 @@
   },
   "bugs": "",
   "slug": "semaphore",
-  "shortDescription": "A sweet package",
+  "shortDescription": "A minimalist feature flags engine for CFML applications",
   "description": "A minimalist feature flags engine for CFML applications",
   "instructions": "See README.md",
   "changelog": "",
