@@ -115,7 +115,7 @@ component
 		switch ( arguments.rule.type ){
 
 			case '%':
-				var crc = getUserCRC( arguments.userAttributes );
+				var crc = getUserRuleCRC( arguments.userAttributes, arguments.rule );
 				return ruleMathIsTrue( crc, '<=', arguments.rule.percentage/100 );
 
 			case 'attributeMath':
@@ -130,11 +130,41 @@ component
 		}
 	}
 
-	private numeric function getUserCRC( required struct userAttributes ){
-		//todo: Is this even a safe thing to do?!
-		var crc = '0.' & hash( serializeJson(arguments.userAttributes), 'md5' ).reReplaceNoCase('[a-z]', '', 'ALL');
-		// writeDump(crc);
-		return crc;
+	private numeric function getUserRuleCRC( required struct userAttributes, required struct rule ){
+		/*
+			This is what I'm doing.
+			Is it safe? I don't see why not.
+			Is it "right"? Probably not.
+			Does it work? Seems like it to me!
+
+			GOAL:
+			Given a struct with some data, convert that to a numeric value
+			between 0-1 in a consistent manner such that the same input always
+			results in the same output. { a: 1 } always results in 0.42 (or whatever).
+
+			APPROACH:
+			- take the JSON representation of the structure
+			- sort the characters in the string (to make it deterministic)
+			- prepend the sorted json of the rule (so that the same users don't get selected for every % rule)
+			- MD5 hash the resulting string to create a value with widely distributed numeric range
+			- then strip out all letters, leaving some numeric value
+			- then prepend "0." to get it to be somewhere between 0 and 1
+
+			This appears to generate a sufficiently random, widely distributed range
+			of numbers between 0-1. Collisions are possible, but that should be true
+			of any solution, and two users having the same CRC is not actually a
+			problem for our purposes. We don't need a unique number for all users, we
+			just need to be able to segment them consistently.
+		*/
+		var userAttrsAsJson = serializeJson( arguments.userAttributes );
+		var ruleAsJson = serializeJson( arguments.rule );
+		var charArray = listToArray( ruleAsJson & userAttrsAsJson, '' );
+		arraySort( charArray, 'text' );
+		var sortedChars = arrayToList( charArray, '' );
+		var hashed = hash( sortedChars );
+		var digits = hashed.reReplaceNoCase('[a-z]', '', 'ALL');
+		var crc = '0.' & digits;
+		return left(crc, 8);
 	}
 
 	private boolean function ruleMathIsTrue(required any userAttributeValue, required string operator, required any ruleValue){

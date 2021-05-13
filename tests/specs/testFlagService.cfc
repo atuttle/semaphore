@@ -91,8 +91,8 @@ component extends="testbox.system.BaseSpec" {
 				});
 
 				it("% check returns true if CRC is <= desired value", function(){
-					//mock the crc calculation
-					flagService.$(method: "getUserCRC", returns: 0);
+					//mock the crc calculation to return a scenario we want to test
+					flagService.$(method: "getUserRuleCRC", returns: 0);
 
 					var testUserAttributes = { foo: 42 };
 					var testFlagMatch = { active: true, rules: [ { type: '%', percentage: 50 } ] };
@@ -101,8 +101,8 @@ component extends="testbox.system.BaseSpec" {
 				});
 
 				it("% check returns false if CRC is > desired value", function(){
-					//mock the crc calculation
-					flagService.$(method: "getUserCRC", returns: 1);
+					//mock the crc calculation to return a scenario we want to test
+					flagService.$(method: "getUserRuleCRC", returns: 1);
 
 					var testUserAttributes = { foo: 42 };
 					var testFlag = { active: true, rules: [ { type: '%', percentage: 50 } ] };
@@ -123,6 +123,17 @@ component extends="testbox.system.BaseSpec" {
 
 					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
+				});
+
+			});
+
+			describe("::getUserRuleCRC", function(){
+
+				makePublic( flagService, 'getUserRuleCRC', 'pub_getUserRuleCRC');
+
+				it("returns a known value", function(){
+					var crcActual = flagService.pub_getUserRuleCRC( { user: "adam", id: 42 }, { awesome: true } );
+					expect( crcActual ).toBe( 0.588111 );
 				});
 
 			});
