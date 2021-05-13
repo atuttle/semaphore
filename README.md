@@ -1,9 +1,8 @@
 # A minimalist Feature Flag engine for CFML apps
+[![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![Tests](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/cfml-feature-flags/actions/workflows/main_tests.yml)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 **Why?** I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
