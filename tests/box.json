@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "testbox": "^4.2.1+400"
+  },
+  "installPaths": {
+    "testbox": "testbox/"
+  },
+  "testbox": {
+    "runner": [
+      {
+        "default": "http://localhost/tests/runner.cfm"
+      }
+    ],
+    "directory": "tests.specs"
+  }
+}

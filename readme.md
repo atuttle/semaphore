@@ -61,8 +61,7 @@ This is likely to change, but for now here's what they look like:
 		rules: [
 			{
 				type: '%',
-				operator: '>=',
-				comparator: 50
+				percentage: 50
 			}
 		]
 	}
@@ -107,4 +106,17 @@ This is likely to change, but for now here's what they look like:
 
 - Percentage: A random % of users are in the active segment
 - Attribute Math: You specify an attribute and a comparison (value and operator) and anyone who passes the comparison is in the active segment
-- More TBD?
+- (More TBD?)
+
+# Contributing
+
+## How to run the tests locally
+
+Option 1: Use CommandBox:
+
+1. Install [CommandBox](https://www.ortussolutions.com/products/commandbox)
+2. `cd tests && box server start && box testbox run`
+
+Option 2: Use Docker:
+
+1. TBD

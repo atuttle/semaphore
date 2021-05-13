@@ -1,0 +1,18 @@
+{
+    "name":"flagService_test_harness",
+    "profile":"none",
+    "console":false,
+    "openBrowser":false,
+    "trayEnable":false,
+    "app":{
+        "cfengine":"lucee@5.3.7.47"
+    },
+    "web":{
+        "host":"0.0.0.0",
+        "webroot":"./",
+        "HTTP":{
+            "enable":true,
+            "port":80
+        }
+    }
+}
