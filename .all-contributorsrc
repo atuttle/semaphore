@@ -25,10 +25,19 @@
       "contributions": [
         "tool"
       ]
+    },
+    {
+      "login": "adamcameron",
+      "name": "Adam Cameron",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2041977?v=4",
+      "profile": "http://blog.adamcameron.me/",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "projectName": "cfml-feature-flags",
+  "projectName": "semaphore",
   "projectOwner": "atuttle",
   "repoType": "github",
   "repoHost": "https://github.com",
