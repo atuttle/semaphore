@@ -15,8 +15,8 @@ jobs:
         with:
           path: '.'
 
-      - name: pwd
-        run: pwd
+      - name: cat
+        run: cat box.json
 
       - name: Run Service Tests
         run: docker build -t flagservice:test .
