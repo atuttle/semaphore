@@ -13,6 +13,9 @@ jobs:
         id: git-checkout
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        uses: pixl8/github-action-box-install@v2
+
       - name: Run tests
         uses: pixl8/github-action-box-test@v3
         with:
