@@ -1,0 +1,19 @@
+name: Run tests for all PRs
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+
+      - name: Checkout Code
+        id: git-checkout
+        uses: actions/checkout@v2
+        with:
+          path: src
+
+      - name: Run Service Tests
+        run: docker build -t flagservice:test .
