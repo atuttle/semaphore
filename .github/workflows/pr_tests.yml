@@ -12,6 +12,8 @@ jobs:
       - name: Checkout Code
         id: git-checkout
         uses: actions/checkout@v2
+        with:
+          path: '.'
 
       - name: pwd
         run: pwd
