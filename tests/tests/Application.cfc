@@ -1,8 +1,3 @@
-/**
-* Copyright Since 2005 Ortus Solutions, Corp
-* www.ortussolutions.com
-**************************************************************************************
-*/
 component{
 	this.name = "flagService tests";
 	// any other application.cfc stuff goes below:
@@ -12,4 +7,5 @@ component{
 	this.basePath = getDirectoryFromPath( getCurrentTemplatePath() ).replace('\\','/','ALL').reverse().listDeleteAt(1,'/').listDeleteAt(1,'/').reverse();
 	this.mappings["/lib"] = this.basePath;
 	this.mappings[ "/tests" ] = this.basePath & '/tests';
+
 }
