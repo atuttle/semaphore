@@ -119,4 +119,5 @@ Option 1: Use CommandBox:
 
 Option 2: Use Docker:
 
-1. TBD
+1. `docker build -t flagservice:test .`
+2. if it exits with an error, the tests failed and the error output will be displayed. If it exits successfully, the tests passed.
