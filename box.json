@@ -8,7 +8,7 @@
   "testbox": {
     "runner": [
       {
-        "default": "http://localhost/tests/runner.cfm"
+        "default": "http://localhost/runner.cfm"
       }
     ],
     "directory": "tests.specs"

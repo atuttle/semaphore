@@ -9,7 +9,7 @@
     },
     "web":{
         "host":"0.0.0.0",
-        "webroot":"./",
+        "webroot":"/",
         "HTTP":{
             "enable":true,
             "port":80
