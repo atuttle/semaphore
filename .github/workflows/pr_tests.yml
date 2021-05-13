@@ -12,8 +12,6 @@ jobs:
       - name: Checkout Code
         id: git-checkout
         uses: actions/checkout@v2
-        with:
-          path: src
 
       - name: Run Service Tests
         run: docker build -t flagservice:test .
