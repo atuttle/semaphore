@@ -11,8 +11,8 @@ Before you make any changes to the project, make sure the tests are running for 
 If you haven't already, install [CommandBox][commandbox].
 
 ```
-$ git clone git@github.com:atuttle/cfml-feature-flags.git
-$ cd cfml-feature-flags
+$ git clone git@github.com:atuttle/semaphore.git
+$ cd semaphore
 $ box server start directory="tests" serverConfigFile="tests/server.json"
 ```
 
