@@ -7,15 +7,14 @@
 
 **Why?** I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
 
-## ⚠️ EARLY DAYS! DANGER! ⚠️
-
-
-I have only just begun working on this project and it's not really useful yet. Contributions are welcome, though!
+> ### ⚠️ EARLY DAYS! DANGER! ⚠️
+>
+> I have only just begun working on this project and it's not really useful yet. Contributions are welcome, though!
 
 ### What's NOT included? (And may never be...)
 
-- Flag definition storage. I'll consider providing a mechanism/callback for saving & loading flag definitions, but for now they're only in-memory.
-- GUI for creating, browsing, toggling, or otherwise modifying flags. You'll need to create your own, but I'll provide methods to hook in and do so.
+- Flag definition storage. Flag data is stored in-memory and it's up to you to bulk load it from your storage mechanism when your app starts up, and to save changes when they're made.
+- GUI for creating, browsing, toggling, or otherwise modifying flags. You'll need to create your own, but I'll provide methods to hook in and do CRUD.
 
 ### What IS (or will be) included?
 
