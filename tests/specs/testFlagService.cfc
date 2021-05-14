@@ -145,7 +145,7 @@ component extends="testbox.system.BaseSpec" {
 
 				it("returns a known value", function(){
 					var crcActual = flagService.pub_getUserRuleCRC( { user: "adam", id: 42 }, { awesome: true } );
-					expect( crcActual ).toBe( 0.863744 );
+					expect( crcActual ).toBe( 0.3333 );
 				});
 
 				it("returns different values for similar inputs (json-inversion check)", function(){

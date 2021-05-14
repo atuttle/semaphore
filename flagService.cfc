@@ -143,12 +143,14 @@ component
 			results in the same output. { a: 1 } always results in 0.42 (or whatever).
 
 			APPROACH:
-			- take the JSON representation of the structure
-			- sort the characters in the string (to make it deterministic)
-			- prepend the sorted json of the rule (so that the same users don't get selected for every % rule)
+			- We want deterministic JSON of userAttributes but can't count on CFML engines to give it to us.
+			- To make it deterministic, create an array in sorted-struct-key-order of each k/v pair
+			- serialize that array to JSON
+			- prepend the deterministic-json of the rule (so that the same users don't get selected for every % rule)
 			- MD5 hash the resulting string to create a value with widely distributed numeric range
 			- then strip out all letters, leaving some numeric value
 			- then prepend "0." to get it to be somewhere between 0 and 1
+			- run a left(6) on it to guarantee no more than 4 digits after the decimal place
 
 			This appears to generate a sufficiently random, widely distributed range
 			of numbers between 0-1. Collisions are possible, but that should be true
@@ -157,22 +159,23 @@ component
 			just need to be able to segment them consistently.
 		*/
 
-		//since JSON objects don't get serialized in a deterministic way, let's make it deterministic
-		//by putting each key in its own object in an array.
-		var userAttrsData = [];
-		var keys = structKeyArray( arguments.userAttributes );
-		arraySort( keys, 'text' );
-		for ( var propName in keys ){
-			userAttrsData.append({ '#propName#': arguments.userAttributes[propName] });
-		}
-
-		var userAttrsAsJson = serializeJson( userAttrsData );
-		var ruleAsJson = serializeJson( arguments.rule );
-		var cipher = ruleAsJson & userAttrsAsJson;
-		var hashed = hash( cipher );
+		var userAttrsAsJson = structToDeterministicString( arguments.userAttributes );
+		var ruleAsJson = structToDeterministicString( arguments.rule );
+		var mashup = ruleAsJson & userAttrsAsJson;
+		var hashed = hash( mashup );
 		var digits = hashed.reReplaceNoCase('[a-z]', '', 'ALL');
 		var crc = '0.' & digits;
-		return left(crc, 8);
+		return left(crc, 6);
+	}
+
+	private string function structToDeterministicString( required struct in ){
+		var keys = structKeyArray( arguments.in );
+		var data = [];
+		arraySort( keys, 'text' );
+		for ( var propName in keys ){
+			data.append({ '#propName#': arguments.in[propName] });
+		}
+		return serializeJson( data );
 	}
 
 	private boolean function ruleMathIsTrue(required any userAttributeValue, required string operator, required any ruleValue){
