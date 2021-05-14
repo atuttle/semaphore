@@ -184,6 +184,8 @@ component
 				return arguments.userAttributeValue >= arguments.ruleValue;
 			case 'in':
 				return arrayFindNoCase(arguments.ruleValue, arguments.userAttributeValue) != 0;
+			case 'has':
+				return arrayFindNoCase(arguments.userAttributeValue, arguments.ruleValue) != 0;
 			default:
 				return false;
 		}

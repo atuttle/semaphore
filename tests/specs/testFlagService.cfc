@@ -90,6 +90,18 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
+				it("attributeMath `has` correctly", function(){
+					var testUserAttributes = { roles: ['pleb','admin','diety'] };
+					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
+
+					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+
+					expect( actualMatch ).toBeTrue();
+					expect( actualNoMatch ).toBeFalse();
+				});
+
 				it("% check returns true if CRC is <= desired value", function(){
 					//mock the crc calculation to return a scenario we want to test
 					flagService.$(method: "getUserRuleCRC", returns: 0);
