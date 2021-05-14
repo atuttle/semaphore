@@ -156,12 +156,20 @@ component
 			problem for our purposes. We don't need a unique number for all users, we
 			just need to be able to segment them consistently.
 		*/
-		var userAttrsAsJson = serializeJson( arguments.userAttributes );
+
+		//since JSON objects don't get serialized in a deterministic way, let's make it deterministic
+		//by putting each key in its own object in an array.
+		var userAttrsData = [];
+		var keys = structKeyArray( arguments.userAttributes );
+		arraySort( keys, 'text' );
+		for ( var propName in keys ){
+			userAttrsData.append({ '#propName#': arguments.userAttributes[propName] });
+		}
+
+		var userAttrsAsJson = serializeJson( userAttrsData );
 		var ruleAsJson = serializeJson( arguments.rule );
-		var charArray = listToArray( ruleAsJson & userAttrsAsJson, '' );
-		arraySort( charArray, 'text' );
-		var sortedChars = arrayToList( charArray, '' );
-		var hashed = hash( sortedChars );
+		var cipher = ruleAsJson & userAttrsAsJson;
+		var hashed = hash( cipher );
 		var digits = hashed.reReplaceNoCase('[a-z]', '', 'ALL');
 		var crc = '0.' & digits;
 		return left(crc, 8);
