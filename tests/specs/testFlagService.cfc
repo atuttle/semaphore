@@ -148,6 +148,14 @@ component extends="testbox.system.BaseSpec" {
 					expect( crcActual ).toBe( 0.588111 );
 				});
 
+				it("returns different values for similar inputs (json-inversion check)", function(){
+					//we should expect different CRC values for these two objects, but the current
+					//implementation probably returns the same thing :(
+					var crcActual1 = flagService.pub_getUserRuleCRC( { foo: "x", bar: "y" }, { awesome: true } );
+					var crcActual2 = flagService.pub_getUserRuleCRC( { foo: "y", bar: "x" }, { awesome: true } );
+					expect( crcActual1 ).notToBe( crcActual2 );
+				});
+
 			});
 
 		});
