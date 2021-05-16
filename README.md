@@ -21,8 +21,7 @@
 - Rules engine
 - DSL (Domain Specific Language) for defining flags as data
 - Methods for flag CRUD, and evaluation
-- Comprehensive test suite so that you know all of the above is trustworthy
-- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
+- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml) Comprehensive test suite so that you know all of the above is trustworthy
 
 # How does it work?
 
