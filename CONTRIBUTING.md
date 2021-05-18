@@ -39,4 +39,4 @@ This project uses [All Contributors][allcontribs] to recognize everyone that has
 [commandbox]: https://www.ortussolutions.com/products/commandbox
 [allcontribs]: https://allcontributors.org/
 [allcontribs-bot-usage]: https://allcontributors.org/docs/en/bot/usage
-[makeapr]: makeapullrequest.com
+[makeapr]: https://makeapullrequest.com
