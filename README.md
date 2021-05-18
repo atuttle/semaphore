@@ -117,6 +117,8 @@ This is likely to change, but for now here's what they look like:
 
 - `%` "Percentage": A random % of users are in the active segment
 - `attributeMath` "Attribute Math": You specify an attribute and a comparison (value and operator) and anyone who passes the comparison is in the active segment
+- `nobodoy`: Flag is OFF for all users
+- `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
 
 # Why not just use config settings?
