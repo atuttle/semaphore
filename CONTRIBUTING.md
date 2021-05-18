@@ -1,6 +1,6 @@
 # Contributing
 
-All contributions are welcome! 💖
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) All contributions are welcome! 💖
 
 For the safety and wellbeing of everyone, please be aware that we will expect you to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
 
