@@ -1,5 +1,5 @@
 {
-    "name":"flagService_test_harness",
+    "name":"semaphoreTests",
     "profile":"none",
     "console":false,
     "openBrowser":false,

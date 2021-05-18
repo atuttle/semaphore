@@ -18,7 +18,7 @@ $ cd semaphore
 $ box server start directory="tests" serverConfigFile="tests/server.json"
 ```
 
-This gets the server running locally for you. Now run the tests.
+This gets the server running locally for you. It will need to be running whenever you want to run the tests. Now run the tests.
 
 If you already have something using port 80, the tests won't work. You can either temporarily stop that service to run the tests, or you can submit a PR that makes our tests run on a nonstandard port. 😜
 
@@ -27,6 +27,15 @@ Once the server is running, if you prefer viewing the tests in a browser, they c
 On the CLI:
  - `$ box testbox run` does a one-time run
  - `$ box testbox watch` will re-run the tests when relevant files are saved
+
+I've also included a Makefile with some helpful aliases for managing the test server, and running tests
+
+- `make test` will run the tests once, starting the server for you if it's not already running
+- `make watch` will run the tests in watch mode, starting the server for you if it's not already running
+- `make up` will start the server for you without running the tests in the CLI, useful if you want to run the tests in your browser
+- `make down` will stop the server
+- `make clean` will remove the server from your CommandBox server cache
+- If it's easier for you to remember, `make start` is also an alias for `make up` and `make stop` is an alias for `make down`.
 
 ## Now, make your change
 

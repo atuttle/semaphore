@@ -1,5 +1,5 @@
 component{
-	this.name = "flagService tests";
+	this.name = "semaphore tests";
 	// any other application.cfc stuff goes below:
 	this.sessionManagement = false;
 
