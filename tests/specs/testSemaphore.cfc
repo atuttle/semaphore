@@ -7,6 +7,22 @@ component extends="testbox.system.BaseSpec" {
 
 		describe("semaphore", function(){
 
+			describe("::checkForUser", function(){
+
+				it("finds the correct flag", function(){
+					//mock the crc calculation to return a scenario we want to test
+					semaphore.$(method: 'getAllFlags', returns: { 'flag_find_test': { green: 'best_color' }});
+					semaphore.$(method: "checkFlagForUser", returns: true);
+					var actual1 = semaphore.checkForUser('flag_find_test', {});
+					expect( actual1 ).toBeTrue();
+
+					semaphore.$(method: "checkFlagForUser", returns: false);
+					var actual2 = semaphore.checkForUser('flag_find_test', {});
+					expect( actual2 ).toBeFalse();
+				});
+
+			});
+
 			describe("::checkFlagForUser", function(){
 
 				makePublic( semaphore, 'checkFlagForUser', 'pub_checkFlagForUser')
@@ -247,6 +263,53 @@ component extends="testbox.system.BaseSpec" {
 					var actual2 = semaphore.pub_evalRuleOperator(['a','b','c'], 'has', 'foo');
 					expect(actual1).toBeTrue();
 					expect(actual2).toBeFalse();
+				});
+
+			});
+
+			describe("::setAllFlags", function(){
+
+				it("sets the entire flags variable", function(){
+					var dummyFlags = { 'foo': 42, 'bar': 'baz' };
+					semaphore.setAllFlags(dummyFlags);
+					var actualFlags = semaphore.$getProperty( name: 'flags', scope: 'variables' );
+					expect( actualFlags ).toBe( dummyFlags );
+				});
+
+			});
+
+			describe("::getAllFlags", function(){
+
+				it("gets the entire flags variable", function(){
+					var dummyFlags = { 'alexander': 'hamilton' };
+					semaphore.$property( propertyName: 'flags', propertyScope: 'variables', mock: dummyFlags );
+					var actual = semaphore.getAllFlags();
+					debug( actual );
+					expect( actual ).toBe( dummyFlags );
+				});
+
+			});
+
+			describe("::setFlag", function(){
+
+				it("sets one flag", function(){
+					var dummyFlag = { 'foo': 42 };
+					semaphore.setFlag('dummy', dummyFlag);
+
+					var actualFlags = semaphore.$getProperty( name: 'flags', scope: 'variables' );
+					expect( actualFlags.keyExists('dummy') ).toBeTrue();
+					expect( actualFlags['dummy'] ).toBe( dummyFlag );
+				});
+
+			});
+
+			describe("::getFlag", function(){
+
+				it("gets one flag", function(){
+					var dummyFlags = { 'burr': {first: 'aaron'}, 'mulligan': { first: 'hercules' } };
+					semaphore.$property( propertyName: 'flags', propertyScope: 'variables', mock: dummyFlags );
+					var actual = semaphore.getFlag( 'mulligan' );
+					expect( actual ).toBe( dummyFlags.mulligan );
 				});
 
 			});
