@@ -56,6 +56,12 @@ component {
 	private boolean function evaluateRule( required struct rule, required struct userAttributes ){
 		switch ( arguments.rule.type ){
 
+			case 'everybody':
+				return true;
+
+			case 'nobody':
+				return false;
+
 			case '%':
 				var crc = getUserRuleCRC( arguments.userAttributes, arguments.rule );
 				return ruleMathIsTrue( crc, '<=', arguments.rule.percentage/100 );

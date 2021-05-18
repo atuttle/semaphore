@@ -139,6 +139,22 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualMatch ).toBeTrue();
 				});
 
+				it("returns true if rule type is 'everybody'", function(){
+					var testUserAttributes = { foo: 42 };
+					var testFlag = { active: true, rules: [ { type: 'everybody' } ] };
+
+					var actual = semaphore.pub_checkFlagForUser(testFlag, testUserAttributes);
+					expect( actual ).toBeTrue();
+				});
+
+				it("returns false if rule type is 'nobody'", function(){
+					var testUserAttributes = { foo: 42 };
+					var testFlag = { active: true, rules: [ { type: 'nobody' } ] };
+
+					var actual = semaphore.pub_checkFlagForUser(testFlag, testUserAttributes);
+					expect( actual ).toBeFalse();
+				});
+
 			});
 
 			describe("::getUserRuleCRC", function(){
