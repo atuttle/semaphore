@@ -1,34 +1,39 @@
-# A minimalist Feature Flag engine for CFML apps
+# Semaphore
+A minimalist Feature Flag engine for CFML apps
+
 [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-**Why?** I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
+> #### Why?
+> I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
 
-> ### ⚠️ EARLY DAYS! DANGER! ⚠️
+> #### ⚠️ EARLY DAYS! DANGER! ⚠️
 >
 > I have only just begun working on this project and it's not really useful yet. Contributions are welcome, though!
 
-### What's NOT included? (And may never be...)
-
-- Flag definition storage. Flag data is stored in-memory and it's up to you to bulk load it from your storage mechanism when your app starts up, and to save changes when they're made.
-- GUI for creating, browsing, toggling, or otherwise modifying flags. You'll need to create your own, but I'll provide methods to hook in and do CRUD.
-
-### What IS (or will be) included?
+### What IS included?
 
 - Rules engine
 - DSL (Domain Specific Language) for defining flags as data
 - Methods for flag CRUD, and evaluation
 - [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml) Comprehensive test suite so that you know all of the above is trustworthy
 
-# How does it work?
+### What's NOT included?
 
-Wrap features thusly:
+- Flag definition storage. Flag data is stored in-memory and it's up to you to bulk load it from your storage mechanism when your app starts up, and to save changes when they're made.
+- GUI for creating, browsing, toggling, or otherwise modifying flags. You'll need to create your own, but I'll provide methods to hook in and do CRUD.
+
+# Usage
+
+1. Create a Semaphore instance. You only need one: cache it in Application or Server scope.
+2. Load your flags at app startup: `semaphore.setAllFlags({ 'my_flag': {} });`
+3. Wrap features thusly:
 
 ```js
-if (flagService.checkForUser( "my_flag", userAttributes )) {
+if (semaphore.checkForUser( "my_flag", userAttributes )) {
 	newImplementation();
 } else {
 	oldImplementation();
@@ -37,21 +42,9 @@ if (flagService.checkForUser( "my_flag", userAttributes )) {
 
 Based on the `userAttributes` and your flag definitions, `checkForUser()` returns true or false.
 
-# Why not just use config settings?
-
-You could do that, sure. But the value proposition of feature flags is that they can be toggled independendtly of deploying code changes to your application, and often much more rapidly. They can take effect as quickly as you can update the flag state on your application.
-
-(How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
-
-ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
-
-# Installation & Usage
-
-TBD
-
 ## User Attributes
 
-`userAttributes` is a structure containing... anything you want. You'll want it to be flat (no nested properties), and contain all user-data and environment-data necessary to evaluate a flag. (Or to put it another way: include anything that you might want to use to create user segments.) For example:
+`userAttributes` is a structure containing... anything you want. You'll want it to be flat (no nested structs), and contain all user-data and environment-data necessary to evaluate a flag. (Or to put it another way: include anything that you might want to use to create user segments.) For example:
 
 ```js
 {
@@ -59,6 +52,7 @@ TBD
 	,userEmail: 'fordprefect@earth.pizza'
 	,userGroup: 'towel'
 	,betaOptIn: true
+	,roles: ['security_admin','editor','writer','reader']
 	,env: 'production'
 }
 ```
@@ -121,9 +115,17 @@ This is likely to change, but for now here's what they look like:
 
 ### Flag Rule Types
 
-- Percentage: A random % of users are in the active segment
-- Attribute Math: You specify an attribute and a comparison (value and operator) and anyone who passes the comparison is in the active segment
-- (More TBD?)
+- `%` "Percentage": A random % of users are in the active segment
+- `attributeMath` "Attribute Math": You specify an attribute and a comparison (value and operator) and anyone who passes the comparison is in the active segment
+- More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
+
+# Why not just use config settings?
+
+You could do that, sure. But the value proposition of feature flags is that they can be toggled independendtly of deploying code changes to your application, and often much more rapidly. They can take effect as quickly as you can update the flag state on your application.
+
+(How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
+
+ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
 
 # Contributing
 
