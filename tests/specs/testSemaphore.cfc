@@ -2,12 +2,12 @@ component extends="testbox.system.BaseSpec" {
 
 	function run(){
 
-		var semaphore = createObject('lib.semaphore');
-		prepareMock( semaphore );
-
 		describe("semaphore", function(){
 
 			describe("::checkForUser", function(){
+
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
 
 				it("finds the correct flag", function(){
 					//mock the crc calculation to return a scenario we want to test
@@ -25,6 +25,8 @@ component extends="testbox.system.BaseSpec" {
 
 			describe("::checkFlagForUser", function(){
 
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
 				makePublic( semaphore, 'checkFlagForUser', 'pub_checkFlagForUser')
 
 				it("attributeMath defaults to false if the attribute isn't found", function(){
@@ -175,6 +177,8 @@ component extends="testbox.system.BaseSpec" {
 
 			describe("::getUserRuleCRC", function(){
 
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
 				makePublic( semaphore, 'getUserRuleCRC', 'pub_getUserRuleCRC');
 
 				it("returns a known value", function(){
@@ -191,6 +195,9 @@ component extends="testbox.system.BaseSpec" {
 			});
 
 			describe("::evalRuleOperator", function(){
+
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
 				makePublic( semaphore, 'evalRuleOperator', 'pub_evalRuleOperator');
 
 				it("correctly implements == and =", function(){
@@ -269,6 +276,9 @@ component extends="testbox.system.BaseSpec" {
 
 			describe("::setAllFlags", function(){
 
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
+
 				it("sets the entire flags variable", function(){
 					var dummyFlags = { 'foo': 42, 'bar': 'baz' };
 					semaphore.setAllFlags(dummyFlags);
@@ -279,6 +289,9 @@ component extends="testbox.system.BaseSpec" {
 			});
 
 			describe("::getAllFlags", function(){
+
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
 
 				it("gets the entire flags variable", function(){
 					var dummyFlags = { 'alexander': 'hamilton' };
@@ -292,6 +305,9 @@ component extends="testbox.system.BaseSpec" {
 
 			describe("::setFlag", function(){
 
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
+
 				it("sets one flag", function(){
 					var dummyFlag = { 'foo': 42 };
 					semaphore.setFlag('dummy', dummyFlag);
@@ -304,6 +320,9 @@ component extends="testbox.system.BaseSpec" {
 			});
 
 			describe("::getFlag", function(){
+
+				var semaphore = createObject('lib.semaphore');
+				prepareMock( semaphore );
 
 				it("gets one flag", function(){
 					var dummyFlags = { 'burr': {first: 'aaron'}, 'mulligan': { first: 'hercules' } };
