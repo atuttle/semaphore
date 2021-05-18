@@ -71,12 +71,44 @@ component
 		};
 	*/
 
+	public struct function getAllFlags(){
+		return variables.flags;
+	}
+
+	public void function setAllFlags( required struct flags ){
+		variables.flags = arguments.flags;
+	}
+
+	public struct function getFlag( required string flagId ){
+		return variables.flags[ arguments.flagId ];
+	}
+
+	public void function setFlag( required string flagId, required struct flag ){
+		variables.flags[ arguments.flagId ] = arguments.flag;
+	}
+
 	public boolean function checkForUser( required string flagId, required struct userAttributes ){
 		var flag = getAllFlags()[ flagId ];
 		return checkFlagForUser( flag, arguments.userAttributes );
 	}
 
-	public boolean function checkFlagForUser( required struct flag, required struct userAttributes ){
+	public struct function getAllFlagsForUser( required struct userAttributes ){
+		var applicableFlagsForUser = {};
+		var flagIds = variables.flags.keyArray();
+		for ( var flagId in flagIds ){
+			param name="variables.flags['#flagId#'].baseState" default="false";
+			if ( checkForUser( flagId, arguments.userAttributes ) ) {
+				applicableFlagsForUser[flagId] = !variables.flags[flagId].baseState;
+			} else {
+				applicableFlagsForUser[flagId] = variables.flags[flagId].baseState;
+			}
+		}
+		return applicableFlagsForUser;
+	}
+
+	// ================== PRIVATES ==================
+
+	private boolean function checkFlagForUser( required struct flag, required struct userAttributes ){
 		//todo: caching will speed this up
 		if ( arguments.flag.active == false ){
 			return false;
@@ -89,27 +121,6 @@ component
 		}
 		return false;
 	}
-
-	public struct function getAllFlags(){
-		return variables.flags;
-	}
-
-	public struct function getAllFlagsForUser( required struct userAttributes ){
-		var applicableFlagsForUser = {};
-		var flagIds = variables.flags.keyArray();
-		for ( var flagId in flagIds ){
-			//default baseState to false
-			param name="variables.flags['#flagId#'].baseState" default="false";
-			if ( flagIsEnabledForUser( flagId, arguments.userAttributes ) ){
-				applicableFlagsForUser[flagId] = !variables.flags[flagId].baseState;
-			}else{
-				applicableFlagsForUser[flagId] = variables.flags[flagId].baseState;
-			}
-		}
-		return applicableFlagsForUser;
-	}
-
-	// ================== PRIVATES ==================
 
 	private boolean function evaluateRule( required struct rule, required struct userAttributes ){
 		switch ( arguments.rule.type ){
@@ -138,19 +149,18 @@ component
 			Does it work? Seems like it to me!
 
 			GOAL:
-			Given a struct with some data, convert that to a numeric value
-			between 0-1 in a consistent manner such that the same input always
-			results in the same output. { a: 1 } always results in 0.42 (or whatever).
+				Given a struct with some data, convert that to a numeric value
+				between 0-1 in a deterministic manner.
 
 			APPROACH:
-			- We want deterministic JSON of userAttributes but can't count on CFML engines to give it to us.
-			- To make it deterministic, create an array in sorted-struct-key-order of each k/v pair
-			- serialize that array to JSON
-			- prepend the deterministic-json of the rule (so that the same users don't get selected for every % rule)
-			- MD5 hash the resulting string to create a value with widely distributed numeric range
-			- then strip out all letters, leaving some numeric value
-			- then prepend "0." to get it to be somewhere between 0 and 1
-			- run a left(6) on it to guarantee no more than 4 digits after the decimal place
+				- We want deterministic JSON of userAttributes but can't count on CFML engines to give it to us.
+				- To make it deterministic, create an array in sorted-struct-key-order of each k/v pair
+				- serialize that array to JSON
+				- prepend the deterministic-json of the rule (so that the same users don't get selected for every % rule)
+				- MD5 hash the resulting string to create a value with widely distributed numeric range
+				- then strip out all letters, leaving some numeric value
+				- then prepend "0." to get it to be somewhere between 0 and 1
+				- run a left(6) on it to guarantee no more than 4 digits after the decimal place
 
 			This appears to generate a sufficiently random, widely distributed range
 			of numbers between 0-1. Collisions are possible, but that should be true
@@ -159,9 +169,9 @@ component
 			just need to be able to segment them consistently.
 		*/
 
-		var userAttrsAsJson = structToDeterministicString( arguments.userAttributes );
-		var ruleAsJson = structToDeterministicString( arguments.rule );
-		var mashup = ruleAsJson & userAttrsAsJson;
+		var userAttrsString = structToDeterministicString( arguments.userAttributes );
+		var ruleString = structToDeterministicString( arguments.rule );
+		var mashup = ruleString & userAttrsString;
 		var hashed = hash( mashup );
 		var digits = hashed.reReplaceNoCase('[a-z]', '', 'ALL');
 		var crc = '0.' & digits;

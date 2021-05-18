@@ -9,10 +9,12 @@ component extends="testbox.system.BaseSpec" {
 
 			describe("::checkFlagForUser", function(){
 
+				makePublic( flagService, 'checkFlagForUser', 'pub_checkFlagForUser')
+
 				it("attributeMath defaults to false if the attribute isn't found", function(){
 					var testUserAttributes = { };
 					var testFlag = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
-					var actual = flagService.checkFlagForUser(testFlag, testUserAttributes);
+					var actual = flagService.pub_checkFlagForUser(testFlag, testUserAttributes);
 					expect( actual ).toBeFalse();
 				});
 
@@ -21,8 +23,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: '==', comparator: true } ] };
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -33,8 +35,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '!=', comparator: 'baz' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: '!=', comparator: false } ] };
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -45,8 +47,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>', comparator: 5 } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>', comparator: 20 } ] };
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -55,7 +57,7 @@ component extends="testbox.system.BaseSpec" {
 				it("attributeMath `>=` correctly (values ==)", function(){
 					var testUserAttributes = { foo: 10 };
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>=', comparator: 10 } ] };
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
@@ -64,8 +66,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<', comparator: 20 } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<', comparator: 5 } ] };
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -74,7 +76,7 @@ component extends="testbox.system.BaseSpec" {
 				it("attributeMath `<=` correctly (values ==)", function(){
 					var testUserAttributes = { foo: 10 };
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<=', comparator: 10 } ] };
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
@@ -83,8 +85,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: 'in', comparator: [42] } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: 'in', comparator: [17] } ] };
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -95,8 +97,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -108,7 +110,7 @@ component extends="testbox.system.BaseSpec" {
 
 					var testUserAttributes = { foo: 42 };
 					var testFlagMatch = { active: true, rules: [ { type: '%', percentage: 50 } ] };
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
@@ -118,7 +120,7 @@ component extends="testbox.system.BaseSpec" {
 
 					var testUserAttributes = { foo: 42 };
 					var testFlag = { active: true, rules: [ { type: '%', percentage: 50 } ] };
-					var actual = flagService.checkFlagForUser(testFlag, testUserAttributes);
+					var actual = flagService.pub_checkFlagForUser(testFlag, testUserAttributes);
 					expect( actual ).toBeFalse();
 				});
 
@@ -133,7 +135,7 @@ component extends="testbox.system.BaseSpec" {
 						]
 					};
 
-					var actualMatch = flagService.checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
