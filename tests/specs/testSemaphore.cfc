@@ -2,19 +2,19 @@ component extends="testbox.system.BaseSpec" {
 
 	function run(){
 
-		var flagService = createObject('lib.flagService');
-		prepareMock( flagService );
+		var semaphore = createObject('lib.semaphore');
+		prepareMock( semaphore );
 
-		describe("flagService", function(){
+		describe("semaphore", function(){
 
 			describe("::checkFlagForUser", function(){
 
-				makePublic( flagService, 'checkFlagForUser', 'pub_checkFlagForUser')
+				makePublic( semaphore, 'checkFlagForUser', 'pub_checkFlagForUser')
 
 				it("attributeMath defaults to false if the attribute isn't found", function(){
 					var testUserAttributes = { };
 					var testFlag = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
-					var actual = flagService.pub_checkFlagForUser(testFlag, testUserAttributes);
+					var actual = semaphore.pub_checkFlagForUser(testFlag, testUserAttributes);
 					expect( actual ).toBeFalse();
 				});
 
@@ -23,8 +23,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: '==', comparator: true } ] };
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -35,8 +35,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '!=', comparator: 'baz' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: '!=', comparator: false } ] };
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -47,8 +47,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>', comparator: 5 } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>', comparator: 20 } ] };
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -57,7 +57,7 @@ component extends="testbox.system.BaseSpec" {
 				it("attributeMath `>=` correctly (values ==)", function(){
 					var testUserAttributes = { foo: 10 };
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>=', comparator: 10 } ] };
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
@@ -66,8 +66,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<', comparator: 20 } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<', comparator: 5 } ] };
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -76,7 +76,7 @@ component extends="testbox.system.BaseSpec" {
 				it("attributeMath `<=` correctly (values ==)", function(){
 					var testUserAttributes = { foo: 10 };
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<=', comparator: 10 } ] };
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
@@ -85,8 +85,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: 'in', comparator: [42] } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: 'in', comparator: [17] } ] };
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -97,8 +97,8 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
-					var actualNoMatch = flagService.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
 
 					expect( actualMatch ).toBeTrue();
 					expect( actualNoMatch ).toBeFalse();
@@ -106,21 +106,21 @@ component extends="testbox.system.BaseSpec" {
 
 				it("% check returns true if CRC is <= desired value", function(){
 					//mock the crc calculation to return a scenario we want to test
-					flagService.$(method: "getUserRuleCRC", returns: 0);
+					semaphore.$(method: "getUserRuleCRC", returns: 0);
 
 					var testUserAttributes = { foo: 42 };
 					var testFlagMatch = { active: true, rules: [ { type: '%', percentage: 50 } ] };
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
 				it("% check returns false if CRC is > desired value", function(){
 					//mock the crc calculation to return a scenario we want to test
-					flagService.$(method: "getUserRuleCRC", returns: 1);
+					semaphore.$(method: "getUserRuleCRC", returns: 1);
 
 					var testUserAttributes = { foo: 42 };
 					var testFlag = { active: true, rules: [ { type: '%', percentage: 50 } ] };
-					var actual = flagService.pub_checkFlagForUser(testFlag, testUserAttributes);
+					var actual = semaphore.pub_checkFlagForUser(testFlag, testUserAttributes);
 					expect( actual ).toBeFalse();
 				});
 
@@ -135,7 +135,7 @@ component extends="testbox.system.BaseSpec" {
 						]
 					};
 
-					var actualMatch = flagService.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
@@ -143,16 +143,16 @@ component extends="testbox.system.BaseSpec" {
 
 			describe("::getUserRuleCRC", function(){
 
-				makePublic( flagService, 'getUserRuleCRC', 'pub_getUserRuleCRC');
+				makePublic( semaphore, 'getUserRuleCRC', 'pub_getUserRuleCRC');
 
 				it("returns a known value", function(){
-					var crcActual = flagService.pub_getUserRuleCRC( { user: "adam", id: 42 }, { awesome: true } );
+					var crcActual = semaphore.pub_getUserRuleCRC( { user: "adam", id: 42 }, { awesome: true } );
 					expect( crcActual ).toBe( 0.3333 );
 				});
 
 				it("returns different values for similar inputs (json-inversion check)", function(){
-					var crcActual1 = flagService.pub_getUserRuleCRC( { foo: "x", bar: "y" }, { awesome: true } );
-					var crcActual2 = flagService.pub_getUserRuleCRC( { foo: "y", bar: "x" }, { awesome: true } );
+					var crcActual1 = semaphore.pub_getUserRuleCRC( { foo: "x", bar: "y" }, { awesome: true } );
+					var crcActual2 = semaphore.pub_getUserRuleCRC( { foo: "y", bar: "x" }, { awesome: true } );
 					expect( crcActual1 ).notToBe( crcActual2 );
 				});
 
