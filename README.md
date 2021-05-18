@@ -1,7 +1,7 @@
 # A minimalist Feature Flag engine for CFML apps
 [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -21,8 +21,7 @@
 - Rules engine
 - DSL (Domain Specific Language) for defining flags as data
 - Methods for flag CRUD, and evaluation
-- Comprehensive test suite so that you know all of the above is trustworthy
-- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
+- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml) Comprehensive test suite so that you know all of the above is trustworthy
 
 # How does it work?
 
@@ -142,6 +141,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://adamtuttle.codes"><img src="https://avatars.githubusercontent.com/u/46990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Tuttle</b></sub></a><br /><a href="https://github.com/atuttle/semaphore/commits?author=atuttle" title="Code">💻</a> <a href="#content-atuttle" title="Content">🖋</a> <a href="https://github.com/atuttle/semaphore/commits?author=atuttle" title="Documentation">📖</a> <a href="#example-atuttle" title="Examples">💡</a></td>
     <td align="center"><a href="http://domwatson.codes"><img src="https://avatars.githubusercontent.com/u/471162?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dominic Watson</b></sub></a><br /><a href="#tool-dominicwatson" title="Tools">🔧</a></td>
     <td align="center"><a href="http://blog.adamcameron.me/"><img src="https://avatars.githubusercontent.com/u/2041977?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Cameron</b></sub></a><br /><a href="#ideas-adamcameron" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://sebduggan.com"><img src="https://avatars.githubusercontent.com/u/208398?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Seb Duggan</b></sub></a><br /><a href="https://github.com/atuttle/semaphore/issues?q=author%3Asebduggan" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 

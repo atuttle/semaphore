@@ -34,6 +34,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "sebduggan",
+      "name": "Seb Duggan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/208398?v=4",
+      "profile": "http://sebduggan.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
