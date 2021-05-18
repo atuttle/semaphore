@@ -82,7 +82,7 @@ This is likely to change, but for now here's what they look like:
 		active: true,
 		rules: [
 			{
-				type: 'attributeMath',
+				type: 'filter',
 				attribute: 'userId',
 				operator: '=',
 				comparator: 42
@@ -96,7 +96,7 @@ This is likely to change, but for now here's what they look like:
 		baseState: false,
 		rules: [
 			{
-				type: 'attributeMath',
+				type: 'filter',
 				attribute: 'email',
 				operator: 'in',
 				comparator: ['fordprefect@earth.pizza']
@@ -116,7 +116,7 @@ This is likely to change, but for now here's what they look like:
 ### Flag Rule Types
 
 - `%` "Percentage": A random % of users are in the active segment
-- `attributeMath` "Attribute Math": You specify an attribute and a comparison (value and operator) and anyone who passes the comparison is in the active segment
+- `filter` "Filter": You specify an attribute from the userAttributes object, and a comparison value and operator, and anyone who passes the comparison is in the active segment (flag is ON for them)
 - `nobodoy`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)

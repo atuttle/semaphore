@@ -29,17 +29,17 @@ component extends="testbox.system.BaseSpec" {
 				prepareMock( semaphore );
 				makePublic( semaphore, 'checkFlagForUser', 'pub_checkFlagForUser')
 
-				it("attributeMath defaults to false if the attribute isn't found", function(){
+				it("filter defaults to false if the attribute isn't found", function(){
 					var testUserAttributes = { };
-					var testFlag = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
+					var testFlag = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
 					var actual = semaphore.pub_checkFlagForUser(testFlag, testUserAttributes);
 					expect( actual ).toBeFalse();
 				});
 
-				it("attributeMath `==` correctly", function(){
+				it("filter `==` correctly", function(){
 					var testUserAttributes = { foo: 'bar', found: false };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
-					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: '==', comparator: true } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '==', comparator: 'bar' } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'found', operator: '==', comparator: true } ] };
 
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
@@ -48,10 +48,10 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
-				it("attributeMath `!=` correctly", function(){
+				it("filter `!=` correctly", function(){
 					var testUserAttributes = { foo: 'bar', found: false };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '!=', comparator: 'baz' } ] };
-					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: '!=', comparator: false } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '!=', comparator: 'baz' } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'found', operator: '!=', comparator: false } ] };
 
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
@@ -60,10 +60,10 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
-				it("attributeMath `>` correctly", function(){
+				it("filter `>` correctly", function(){
 					var testUserAttributes = { foo: 10 };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>', comparator: 5 } ] };
-					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>', comparator: 20 } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '>', comparator: 5 } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '>', comparator: 20 } ] };
 
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
@@ -72,17 +72,17 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
-				it("attributeMath `>=` correctly (values ==)", function(){
+				it("filter `>=` correctly (values ==)", function(){
 					var testUserAttributes = { foo: 10 };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '>=', comparator: 10 } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '>=', comparator: 10 } ] };
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
-				it("attributeMath `<` correctly", function(){
+				it("filter `<` correctly", function(){
 					var testUserAttributes = { foo: 10 };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<', comparator: 20 } ] };
-					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<', comparator: 5 } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '<', comparator: 20 } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '<', comparator: 5 } ] };
 
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
@@ -91,17 +91,17 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
-				it("attributeMath `<=` correctly (values ==)", function(){
+				it("filter `<=` correctly (values ==)", function(){
 					var testUserAttributes = { foo: 10 };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: '<=', comparator: 10 } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: '<=', comparator: 10 } ] };
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					expect( actualMatch ).toBeTrue();
 				});
 
-				it("attributeMath `in` correctly", function(){
+				it("filter `in` correctly", function(){
 					var testUserAttributes = { foo: 42 };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'foo', operator: 'in', comparator: [42] } ] };
-					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'found', operator: 'in', comparator: [17] } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: 'in', comparator: [42] } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'found', operator: 'in', comparator: [17] } ] };
 
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
@@ -110,10 +110,10 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
-				it("attributeMath `has` correctly", function(){
+				it("filter `has` correctly", function(){
 					var testUserAttributes = { roles: ['pleb','admin','diety'] };
-					var testFlagMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
-					var testFlagNoMatch = { active: true, rules: [ { type: 'attributeMath', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
 
 					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
 					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
@@ -147,9 +147,9 @@ component extends="testbox.system.BaseSpec" {
 					var testFlagMatch = {
 						active: true,
 						rules: [
-							{ type: 'attributeMath', attribute: 'improbability', operator: '>', comparator: 0.005 },
-							{ type: 'attributeMath', attribute: 'id', operator: 'in', comparator: [23,19,'hut','hut','hike'] },
-							{ type: 'attributeMath', attribute: 'towel', operator: '==', comparator: true }
+							{ type: 'filter', attribute: 'improbability', operator: '>', comparator: 0.005 },
+							{ type: 'filter', attribute: 'id', operator: 'in', comparator: [23,19,'hut','hut','hike'] },
+							{ type: 'filter', attribute: 'towel', operator: '==', comparator: true }
 						]
 					};
 

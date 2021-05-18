@@ -66,7 +66,7 @@ component {
 				var crc = getUserRuleCRC( arguments.userAttributes, arguments.rule );
 				return evalRuleOperator( crc, '<=', arguments.rule.percentage/100 );
 
-			case 'attributeMath':
+			case 'filter':
 				if ( !arguments.userAttributes.keyExists(arguments.rule.attribute) ){
 					return false;
 				}
