@@ -174,6 +174,13 @@ component
 		var mashup = ruleString & userAttrsString;
 		var hashed = hash( mashup );
 		var digits = hashed.reReplaceNoCase('[a-z]', '', 'ALL');
+		if ( digits == '' ){
+			/*
+				it's theoretically possible for the MD5 to have no digits
+				so let's handle that eventuality by subbing in zero's.
+			*/
+			digits = '0000';
+		}
 		var crc = '0.' & digits;
 		return left(crc, 6);
 	}
