@@ -1,5 +1,4 @@
-component
-{
+component {
 
 	variables.flags = {};
 
