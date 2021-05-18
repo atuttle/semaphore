@@ -174,6 +174,83 @@ component extends="testbox.system.BaseSpec" {
 
 			});
 
+			describe("::evalRuleOperator", function(){
+				makePublic( semaphore, 'evalRuleOperator', 'pub_evalRuleOperator');
+
+				it("correctly implements == and =", function(){
+					var actual1 = semaphore.pub_evalRuleOperator('a', '=', 'a');
+					var actual2 = semaphore.pub_evalRuleOperator('a', '=', 'b');
+					var actual3 = semaphore.pub_evalRuleOperator('b', '=', 'b');
+					var actual4 = semaphore.pub_evalRuleOperator('a', '==', 'a');
+					var actual5 = semaphore.pub_evalRuleOperator('a', '==', 'b');
+					var actual6 = semaphore.pub_evalRuleOperator('b', '==', 'b');
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeFalse();
+					expect(actual3).toBeTrue();
+					expect(actual4).toBeTrue();
+					expect(actual5).toBeFalse();
+					expect(actual6).toBeTrue();
+				});
+
+				it("correctly implements !=", function(){
+					var actual1 = semaphore.pub_evalRuleOperator('a', '!=', 'a');
+					var actual2 = semaphore.pub_evalRuleOperator('a', '!=', 'b');
+					expect(actual1).toBeFalse();
+					expect(actual2).toBeTrue();
+				});
+
+				it("correctly implements <", function(){
+					var actual1 = semaphore.pub_evalRuleOperator(7, '<', 12);
+					var actual2 = semaphore.pub_evalRuleOperator(7, '<', 7);
+					var actual3 = semaphore.pub_evalRuleOperator(7, '<', 2);
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeFalse();
+					expect(actual3).toBeFalse();
+				});
+
+				it("correctly implements <=", function(){
+					var actual1 = semaphore.pub_evalRuleOperator(7, '<=', 12);
+					var actual2 = semaphore.pub_evalRuleOperator(7, '<=', 7);
+					var actual3 = semaphore.pub_evalRuleOperator(7, '<=', 2);
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeTrue();
+					expect(actual3).toBeFalse();
+				});
+
+				it("correctly implements >", function(){
+					var actual1 = semaphore.pub_evalRuleOperator(7, '>', 12);
+					var actual2 = semaphore.pub_evalRuleOperator(7, '>', 7);
+					var actual3 = semaphore.pub_evalRuleOperator(7, '>', 2);
+					expect(actual1).toBeFalse();
+					expect(actual2).toBeFalse();
+					expect(actual3).toBeTrue();
+				});
+
+				it("correctly implements >=", function(){
+					var actual1 = semaphore.pub_evalRuleOperator(7, '>=', 12);
+					var actual2 = semaphore.pub_evalRuleOperator(7, '>=', 7);
+					var actual3 = semaphore.pub_evalRuleOperator(7, '>=', 2);
+					expect(actual1).toBeFalse();
+					expect(actual2).toBeTrue();
+					expect(actual3).toBeTrue();
+				});
+
+				it("correctly implements in", function(){
+					var actual1 = semaphore.pub_evalRuleOperator('foo', 'in', ['a','foo']);
+					var actual2 = semaphore.pub_evalRuleOperator('foo', 'in', ['a','b','c']);
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeFalse();
+				});
+
+				it("correctly implements has", function(){
+					var actual1 = semaphore.pub_evalRuleOperator(['a','foo'], 'has', 'foo');
+					var actual2 = semaphore.pub_evalRuleOperator(['a','b','c'], 'has', 'foo');
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeFalse();
+				});
+
+			});
+
 		});
 	}
 

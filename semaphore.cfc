@@ -64,14 +64,14 @@ component {
 
 			case '%':
 				var crc = getUserRuleCRC( arguments.userAttributes, arguments.rule );
-				return ruleMathIsTrue( crc, '<=', arguments.rule.percentage/100 );
+				return evalRuleOperator( crc, '<=', arguments.rule.percentage/100 );
 
 			case 'attributeMath':
 				if ( !arguments.userAttributes.keyExists(arguments.rule.attribute) ){
 					return false;
 				}
 				var userAttributeVal = arguments.userAttributes[ arguments.rule.attribute ];
-				return ruleMathIsTrue( userAttributeVal, arguments.rule.operator, arguments.rule.comparator );
+				return evalRuleOperator( userAttributeVal, arguments.rule.operator, arguments.rule.comparator );
 
 			default:
 				return false;
@@ -132,7 +132,7 @@ component {
 		return serializeJson( data );
 	}
 
-	private boolean function ruleMathIsTrue(required any userAttributeValue, required string operator, required any ruleValue){
+	private boolean function evalRuleOperator(required any userAttributeValue, required string operator, required any ruleValue){
 		switch (arguments.operator){
 			case '=':
 			case '==':
