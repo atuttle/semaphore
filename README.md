@@ -97,7 +97,7 @@ This is likely to change, but for now here's what they look like:
 		rules: [
 			{
 				type: 'filter',
-				attribute: 'email',
+				attribute: 'userEmail',
 				operator: 'in',
 				comparator: ['fordprefect@earth.pizza']
 			}
@@ -117,7 +117,7 @@ This is likely to change, but for now here's what they look like:
 
 - `%` "Percentage": A random % of users are in the active segment
 - `filter` "Filter": You specify an attribute from the userAttributes object, and a comparison value and operator, and anyone who passes the comparison is in the active segment (flag is ON for them)
-- `nobodoy`: Flag is OFF for all users
+- `nobody`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
 
