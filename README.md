@@ -7,14 +7,13 @@ A minimalist Feature Flag engine for CFML apps
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-> #### Why?
-> I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
-
-> #### ⚠️ EARLY DAYS! DANGER! ⚠️
+> #### ⚠️ UNPROVEN! DANGER! ⚠️
 >
-> I have only just begun working on this project and it's not really useful yet. Contributions are welcome, though!
+> While semaphore is currently considered **feature-complete** I have not yet put it into production in any of my applications. I will remove this warning once I've had success with this tool in production.
+>
+> For what it's worth, we've got good tests and they pass. Use at your own risk. 🤷‍♂️
 
-### What IS included?
+### Minimalist? What's included?
 
 - Rules engine
 - DSL (Domain Specific Language) for defining flags as data
@@ -128,6 +127,9 @@ You could do that, sure. But the value proposition of feature flags is that they
 (How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
 
 ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
+
+# Why roll your own?
+I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
 
 # Contributing
 
