@@ -43,6 +43,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "JamoCA",
+      "name": "James Moberg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1112671?v=4",
+      "profile": "https://github.com/JamoCA",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
