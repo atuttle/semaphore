@@ -3,7 +3,7 @@ A minimalist Feature Flag engine for CFML apps
 
 [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
@@ -96,7 +96,7 @@ This is likely to change, but for now here's what they look like:
 		rules: [
 			{
 				type: 'filter',
-				attribute: 'email',
+				attribute: 'userEmail',
 				operator: 'in',
 				comparator: ['fordprefect@earth.pizza']
 			}
@@ -116,7 +116,7 @@ This is likely to change, but for now here's what they look like:
 
 - `%` "Percentage": A random % of users are in the active segment
 - `filter` "Filter": You specify an attribute from the userAttributes object, and a comparison value and operator, and anyone who passes the comparison is in the active segment (flag is ON for them)
-- `nobodoy`: Flag is OFF for all users
+- `nobody`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
 
@@ -148,6 +148,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://domwatson.codes"><img src="https://avatars.githubusercontent.com/u/471162?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Dominic Watson</b></sub></a><br /><a href="#tool-dominicwatson" title="Tools">🔧</a></td>
     <td align="center"><a href="http://blog.adamcameron.me/"><img src="https://avatars.githubusercontent.com/u/2041977?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Cameron</b></sub></a><br /><a href="#ideas-adamcameron" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://sebduggan.com"><img src="https://avatars.githubusercontent.com/u/208398?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Seb Duggan</b></sub></a><br /><a href="https://github.com/atuttle/semaphore/issues?q=author%3Asebduggan" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/JamoCA"><img src="https://avatars.githubusercontent.com/u/1112671?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Moberg</b></sub></a><br /><a href="https://github.com/atuttle/semaphore/issues?q=author%3AJamoCA" title="Bug reports">🐛</a> <a href="https://github.com/atuttle/semaphore/commits?author=JamoCA" title="Code">💻</a> <a href="https://github.com/atuttle/semaphore/commits?author=JamoCA" title="Documentation">📖</a></td>
   </tr>
 </table>
 
