@@ -122,12 +122,12 @@ component {
 		return left(crc, 6);
 	}
 
-	private string function structToDeterministicString( required struct in ){
-		var keys = structKeyArray( arguments.in );
+	private string function structToDeterministicString( required struct input ){
+		var keys = structKeyArray( arguments.input );
 		var data = [];
 		arraySort( keys, 'text' );
 		for ( var propName in keys ){
-			data.append({ '#propName#': arguments.in[propName] });
+			data.append({ '#propName#': arguments.input[propName] });
 		}
 		return serializeJson( data );
 	}
