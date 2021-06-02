@@ -118,7 +118,7 @@ This is likely to change, but for now here's what they look like:
 - `filter` "Filter": You specify an attribute from the userAttributes object, and a comparison value and operator, and anyone who passes the comparison is in the active segment (flag is ON for them)
 - `nobody`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
-- More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
+- More TBD? If you have ideas, [hit me up!](https://github.com/atuttle/semaphore/issues)
 
 # Why not just use config settings?
 
@@ -126,7 +126,7 @@ You could do that, sure. But the value proposition of feature flags is that they
 
 (How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
 
-ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
+ALSO, feature flags allow you to dynamically segment the user population. As seen above, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
 
 # Why roll your own?
 I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
