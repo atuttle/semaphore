@@ -9,7 +9,7 @@ A minimalist Feature Flag engine for CFML apps
 
 > #### ⚠️ UNPROVEN! DANGER! ⚠️
 >
-> While semaphore is currently considered **feature-complete** I have not yet put it into production in any of my applications. I will remove this warning once I've had success with this tool in production.
+> I've only _just_ put this into production in my company's product. So far so good, but it's a sample size of 1 and a test duration measured in days. (29 Jul 2021)
 >
 > For what it's worth, we've got good tests and they pass. Use at your own risk. 🤷‍♂️
 
