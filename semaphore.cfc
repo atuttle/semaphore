@@ -152,9 +152,25 @@ component {
 			case '>=':
 				return arguments.userAttributeValue >= arguments.ruleValue;
 			case 'in':
-				return arrayFindNoCase(arguments.ruleValue, arguments.userAttributeValue) != 0;
+				var ruleValueArray = ruleValue;
+				try {
+					if (!isArray(ruleValueArray)){
+						ruleValueArray = listToArray(arguments.ruleValue);
+					}
+				} catch (any e){
+					throw(type: "semaphore.invalidRuleValueInput", message: "Expected rule value to be an array or a string (list)");
+				}
+				return arrayFindNoCase(ruleValueArray, arguments.userAttributeValue) != 0;
 			case 'has':
-				return arrayFindNoCase(arguments.userAttributeValue, arguments.ruleValue) != 0;
+				var userAttributeValueArray = arguments.userAttributeValue;
+				try {
+					if (!isArray(userAttributeValueArray)){
+						userAttributeValueArray = listToArray(userAttributeValueArray);
+					}
+				} catch (any e){
+					throw(type: "semaphore.invalidUserAttributeValue", message: "Expected user attribute value to be an array or a string (list)");
+				}
+				return arrayFindNoCase(userAttributeValueArray, arguments.ruleValue) != 0;
 			default:
 				return false;
 		}

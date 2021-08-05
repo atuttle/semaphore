@@ -98,7 +98,7 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualMatch ).toBeTrue();
 				});
 
-				it("filter `in` correctly", function(){
+				it("filter `in` correctly (array)", function(){
 					var testUserAttributes = { foo: 42 };
 					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: 'in', comparator: [42] } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'found', operator: 'in', comparator: [17] } ] };
@@ -110,8 +110,32 @@ component extends="testbox.system.BaseSpec" {
 					expect( actualNoMatch ).toBeFalse();
 				});
 
-				it("filter `has` correctly", function(){
+				it("filter `in` correctly (list)", function(){
+					var testUserAttributes = { foo: 42 };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'foo', operator: 'in', comparator: '35,42,17' } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'found', operator: 'in', comparator: '35,96,17' } ] };
+
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+
+					expect( actualMatch ).toBeTrue();
+					expect( actualNoMatch ).toBeFalse();
+				});
+
+				it("filter `has` correctly (array)", function(){
 					var testUserAttributes = { roles: ['pleb','admin','diety'] };
+					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
+					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
+
+					var actualMatch = semaphore.pub_checkFlagForUser(testFlagMatch, testUserAttributes);
+					var actualNoMatch = semaphore.pub_checkFlagForUser(testFlagNoMatch, testUserAttributes);
+
+					expect( actualMatch ).toBeTrue();
+					expect( actualNoMatch ).toBeFalse();
+				});
+
+				it("filter `has` correctly (list)", function(){
+					var testUserAttributes = { roles: 'pleb,admin,diety' };
 					var testFlagMatch = { active: true, rules: [ { type: 'filter', attribute: 'roles', operator: 'has', comparator: 'admin' } ] };
 					var testFlagNoMatch = { active: true, rules: [ { type: 'filter', attribute: 'roles', operator: 'has', comparator: 'pointy-haired-boss' } ] };
 
@@ -258,16 +282,30 @@ component extends="testbox.system.BaseSpec" {
 					expect(actual3).toBeTrue();
 				});
 
-				it("correctly implements in", function(){
+				it("correctly implements in (array)", function(){
 					var actual1 = semaphore.pub_evalRuleOperator('foo', 'in', ['a','foo']);
 					var actual2 = semaphore.pub_evalRuleOperator('foo', 'in', ['a','b','c']);
 					expect(actual1).toBeTrue();
 					expect(actual2).toBeFalse();
 				});
 
-				it("correctly implements has", function(){
+				it("correctly implements in (list)", function(){
+					var actual1 = semaphore.pub_evalRuleOperator('foo', 'in', 'a,foo');
+					var actual2 = semaphore.pub_evalRuleOperator('foo', 'in', 'a,b,c');
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeFalse();
+				});
+
+				it("correctly implements has (array)", function(){
 					var actual1 = semaphore.pub_evalRuleOperator(['a','foo'], 'has', 'foo');
 					var actual2 = semaphore.pub_evalRuleOperator(['a','b','c'], 'has', 'foo');
+					expect(actual1).toBeTrue();
+					expect(actual2).toBeFalse();
+				});
+
+				it("correctly implements has (list)", function(){
+					var actual1 = semaphore.pub_evalRuleOperator('a,foo', 'has', 'foo');
+					var actual2 = semaphore.pub_evalRuleOperator('a,b,c', 'has', 'foo');
 					expect(actual1).toBeTrue();
 					expect(actual2).toBeFalse();
 				});
