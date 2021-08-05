@@ -12,7 +12,7 @@ A minimalist Feature Flag engine for CFML apps
 
 > #### ⚠️ UNPROVEN! DANGER! ⚠️
 >
-> While semaphore is currently considered **feature-complete** I have not yet put it into production in any of my applications. I will remove this warning once I've had success with this tool in production.
+> I've only _just_ put this into production in my company's product. So far so good, but it's a sample size of 1 and a test duration measured in days. (29 Jul 2021)
 >
 > For what it's worth, we've got good tests and they pass. Use at your own risk. 🤷‍♂️
 
@@ -142,7 +142,7 @@ This is likely to change, but for now here's what they look like:
 - `filter` "Filter": You specify an attribute from the userAttributes object, and a comparison value and operator, and anyone who passes the comparison is in the active segment (flag is ON for them)
 - `nobody`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
-- More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
+- More TBD? If you have ideas, [hit me up!](https://github.com/atuttle/semaphore/issues)
 
 #### AND vs. OR
 
@@ -156,7 +156,7 @@ You could do that, sure. But the value proposition of feature flags is that they
 
 (How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
 
-ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
+ALSO, feature flags allow you to dynamically segment the user population. As seen above, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
 
 # Why roll your own?
 
