@@ -1,8 +1,7 @@
 {
   "name": "semaphore",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Adam Tuttle <https://adamtuttle.codes>",
-  "location": "ForgeboxStorage",
   "homepage": "https://github.com/atuttle/semaphore",
   "documentation": "https://github.com/atuttle/semaphore",
   "repository": {
