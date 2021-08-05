@@ -1,10 +1,13 @@
 # Semaphore
+
 A minimalist Feature Flag engine for CFML apps
 
 [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 > #### ⚠️ UNPROVEN! DANGER! ⚠️
@@ -102,6 +105,27 @@ This is likely to change, but for now here's what they look like:
 			}
 		]
 	}
+	,'example_AND_flag': {
+		name: 'Example AND Flag',
+		description: 'This flag requires both rules to evaluate to TRUE',
+		active: true,
+		baseState: false,
+		matchRules: 'all',
+		rules: [
+			{
+				type: 'filter',
+				attribute: 'role',
+				operator: 'has',
+				comparator: ['writer']
+			},
+			{
+				type: 'filter',
+				attribute: 'betaOptIn',
+				operator: '==',
+				comparator: true
+			}
+		]
+	}
 	,'example_inactive_flag': {
 		name: 'Example Inactive Flag',
 		description: 'This flag is false for everyone because it is inactive',
@@ -120,6 +144,12 @@ This is likely to change, but for now here's what they look like:
 - `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](/atuttle/semaphore/issues)
 
+#### AND vs. OR
+
+Flags can have multiple rules. At present, Semaphore only supports flag-wide AND/OR: You can require that `ALL` of the rules evaluate to TRUE, or that `ANY` of the rules evaluate to TRUE.
+
+The default is `ANY`. If you want to require all rules match, set `matchRules: 'ALL'` on your flag.
+
 # Why not just use config settings?
 
 You could do that, sure. But the value proposition of feature flags is that they can be toggled independendtly of deploying code changes to your application, and often much more rapidly. They can take effect as quickly as you can update the flag state on your application.
@@ -129,6 +159,7 @@ You could do that, sure. But the value proposition of feature flags is that they
 ALSO, feature flags allow you to dynamically segment the user population. As we'll see below, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
 
 # Why roll your own?
+
 I created this because I got fed up trying to implement [FlagSmith](https://flagsmith.com) and [Split.io](https://www.split.io) in my app. They both assume that if you're using Java then you're willing/comfortable using Maven (strike 1), both of their docs barely cover SDK instantiation and I couldn't get either of them even simply on its feet let alone doing something useful (strike 2), and it's (mostly) just "if-statements", right? Why can't we host that ourselves? (strike 3)
 
 # Contributing

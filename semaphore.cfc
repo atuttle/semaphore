@@ -48,6 +48,17 @@ component {
 		if ( arguments.flag.active == false ){
 			return false;
 		}
+
+		if ( structKeyExists(arguments.flag, 'matchRules') && lcase(arguments.flag.matchRules) == 'all' ){
+			// this is how we differentiate between AND and OR.
+			for ( var rule in arguments.flag.rules ){
+				if ( !evaluateRule( rule, arguments.userAttributes ) ){
+					return false;
+				}
+			}
+			return true;
+		}//else the default behavior; match "any":
+
 		//return true at first matching rule, no need to check them all
 		for ( var rule in arguments.flag.rules ){
 			if ( evaluateRule( rule, arguments.userAttributes ) ){
