@@ -19,7 +19,11 @@ component {
 	}
 
 	public boolean function checkForUser( required string flagId, required struct userAttributes ){
-		var flag = getAllFlags()[ flagId ];
+		var flags = getAllFlags();
+		if ( !structKeyExists(flags, arguments.flagId) ){
+			return false;
+		}
+		var flag = flags[ flagId ];
 		return checkFlagForUser( flag, arguments.userAttributes );
 	}
 
