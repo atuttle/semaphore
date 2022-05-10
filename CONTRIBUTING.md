@@ -25,8 +25,9 @@ If you already have something using port 80, the tests won't work. You can eithe
 Once the server is running, if you prefer viewing the tests in a browser, they can be found at: http://localhost/runner.cfm
 
 On the CLI:
- - `$ box testbox run` does a one-time run
- - `$ box testbox watch` will re-run the tests when relevant files are saved
+
+- `$ box testbox run` does a one-time run
+- `$ box testbox watch` will re-run the tests when relevant files are saved
 
 I've also included a Makefile with some helpful aliases for managing the test server, and running tests
 
