@@ -10,12 +10,6 @@ A minimalist Feature Flag engine for CFML apps
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-> #### ⚠️ UNPROVEN! DANGER! ⚠️
->
-> I've only _just_ put this into production in my company's product. So far so good, but it's a sample size of 1 and a test duration measured in days. (29 Jul 2021)
->
-> For what it's worth, we've got good tests and they pass. Use at your own risk. 🤷‍♂️
-
 ### Minimalist? What's included?
 
 - Rules engine
@@ -138,8 +132,8 @@ This is likely to change, but for now here's what they look like:
 
 ### Flag Rule Types
 
-- `%` "Percentage": A random % of users are in the active segment
-- `filter` "Filter": You specify an attribute from the userAttributes object, and a comparison value and operator, and anyone who passes the comparison is in the active segment (flag is ON for them)
+- `%` "Percentage": X% of users are selected at random to have the feature enabled.
+- `filter` "Filter": You specify an `attribute` from the userAttributes object, the `operator` and a `comparator` (comparison value), and anyone who passes the comparison is in the active segment (flag is ON for them)
 - `nobody`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](https://github.com/atuttle/semaphore/issues)
@@ -150,13 +144,13 @@ Flags can have multiple rules. At present, Semaphore only supports flag-wide AND
 
 The default is `ANY`. If you want to require all rules match, set `matchRules: 'ALL'` on your flag.
 
+> **Deprecation warning:** In version 1.x the `matchRules` property will be removed in support of [better and/or support](https://adamtuttle.codes/blog/2022/semaphore-0.3-and-1.0/).
+
 # Why not just use config settings?
 
-You could do that, sure. But the value proposition of feature flags is that they can be toggled independendtly of deploying code changes to your application, and often much more rapidly. They can take effect as quickly as you can update the flag state on your application.
+You could do that, sure. But the value proposition of feature flags is that they can be toggled independendtly of deploying code changes to your application, and often much more rapidly. They can take effect as quickly as you can update the flag state on your application. How you do that is left as an exercise for you.
 
-(How you do that is left as an exercise for you. Once I've implemented it in my app I'll probably blog about how I did it and link to that blog post from here.)
-
-ALSO, feature flags allow you to dynamically segment the user population. As seen above, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering.
+ALSO, feature flags allow you to dynamically segment the user population. As seen above, I've already got support for %-based rollouts, as well as specific user-attribute and environment-attribute filtering. Those would be _possible_ to implement with config settings, but probably not worth the effort.
 
 # Why roll your own?
 

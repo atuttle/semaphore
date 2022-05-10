@@ -1,45 +1,45 @@
 {
-  "name": "semaphore",
-  "version": "0.1.0",
-  "author": "Adam Tuttle <https://adamtuttle.codes>",
-  "location": "ForgeboxStorage",
-  "homepage": "https://github.com/atuttle/semaphore",
-  "documentation": "https://github.com/atuttle/semaphore",
-  "repository": {
-    "type": "git",
-    "URL": "https://github.com/atuttle/semaphore"
-  },
-  "bugs": "",
-  "slug": "semaphore",
-  "shortDescription": "A minimalist feature flags engine for CFML applications",
-  "description": "A minimalist feature flags engine for CFML applications",
-  "instructions": "See README.md",
-  "changelog": "",
-  "type": "modules",
-  "keywords": ["feature flags", "flag", "flags", "deploy"],
-  "private": false,
-  "license": [
-    {
-      "type": "MIT",
-      "URL": "https://github.com/atuttle/semaphore/blob/main/LICENSE.md"
-    }
-  ],
-  "contributors": ["Adam Tuttle <https://adamtuttlecodes.com>"],
-  "dependencies": {},
-  "devDependencies": {
-    "testbox": "^4.2.1+400"
-  },
-  "installPaths": {
-    "testbox": "tests/testbox/"
-  },
-  "scripts": {},
-  "ignore": ["**/.*", "/test/", "/tests/"],
-  "testbox": {
-    "runner": [
-      {
-        "default": "http://localhost/runner.cfm"
-      }
-    ],
-    "directory": "tests.specs"
-  }
+	"name": "semaphore",
+	"version": "0.3.0",
+	"author": "Adam Tuttle <https://adamtuttle.codes>",
+	"location": "ForgeboxStorage",
+	"homepage": "https://github.com/atuttle/semaphore",
+	"documentation": "https://github.com/atuttle/semaphore",
+	"repository": {
+		"type": "git",
+		"URL": "https://github.com/atuttle/semaphore"
+	},
+	"bugs": "",
+	"slug": "semaphore",
+	"shortDescription": "A minimalist feature flags engine for CFML applications",
+	"description": "A minimalist feature flags engine for CFML applications",
+	"instructions": "See README.md",
+	"changelog": "",
+	"type": "modules",
+	"keywords": ["feature flags", "flag", "flags", "deploy"],
+	"private": false,
+	"license": [
+		{
+			"type": "MIT",
+			"URL": "https://github.com/atuttle/semaphore/blob/main/LICENSE.md"
+		}
+	],
+	"contributors": ["Adam Tuttle <https://adamtuttlecodes.com>"],
+	"dependencies": {},
+	"devDependencies": {
+		"testbox": "^4.2.1+400"
+	},
+	"installPaths": {
+		"testbox": "tests/testbox/"
+	},
+	"scripts": {},
+	"ignore": ["**/.*", "/test/", "/tests/"],
+	"testbox": {
+		"runner": [
+			{
+				"default": "http://localhost/runner.cfm"
+			}
+		],
+		"directory": "tests.specs"
+	}
 }
