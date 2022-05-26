@@ -15,7 +15,7 @@ A minimalist Feature Flag engine for CFML apps
 - Rules engine
 - DSL (Domain Specific Language) for defining flags as data
 - Methods for flag CRUD, and evaluation
-- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml) Comprehensive test suite so that you know all of the above is trustworthy
+- [![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml) 👈🏻 Comprehensive test suite so that you know all of the above is trustworthy
 
 ### What's NOT included?
 
@@ -57,74 +57,101 @@ I recommend storing this in the user session to eliminate repetitive data lookup
 
 ## Flag Definitions
 
-This is likely to change, but for now here's what they look like:
-
 ```js
 {
 	'example_percentage_flag': {
 		name: 'Example Percentage Flag',
-		description: 'This flag is only true for ~50% of the user population',
+		description: 'This flag is only active for ~50% of the user population',
 		active: true,
 		rules: [
-			{
-				type: '%',
-				percentage: 50
-			}
+			[
+				{
+					type: '%',
+					percentage: 50
+				}
+			]
 		]
 	}
 	,'example_userId_flag': {
 		name: 'Example UserId Flag',
-		description: 'This flag is only true for userId 42',
+		description: 'This flag is only active for userId 42',
 		active: true,
 		rules: [
-			{
-				type: 'filter',
-				attribute: 'userId',
-				operator: '=',
-				comparator: 42
-			}
+			[
+				{
+					type: 'filter',
+					attribute: 'userId',
+					operator: '=',
+					comparator: 42
+				}
+			]
 		]
 	}
 	,'example_email_flag': {
 		name: 'Example Email Flag',
-		description: 'This flag is only true for fordprefect@earth.pizza',
+		description: 'This flag is only active for fordprefect@earth.pizza',
 		active: true,
-		baseState: false,
 		rules: [
-			{
-				type: 'filter',
-				attribute: 'userEmail',
-				operator: 'in',
-				comparator: ['fordprefect@earth.pizza']
-			}
+			[
+				{
+					type: 'filter',
+					attribute: 'userEmail',
+					operator: 'in',
+					comparator: ['fordprefect@earth.pizza']
+				}
+			]
 		]
 	}
 	,'example_AND_flag': {
 		name: 'Example AND Flag',
-		description: 'This flag requires both rules to evaluate to TRUE',
+		description: 'This flag is active only if both rules to evaluate to TRUE (user has role writer, and user has betaOptIn=true)',
 		active: true,
-		baseState: false,
-		matchRules: 'all',
 		rules: [
-			{
-				type: 'filter',
-				attribute: 'role',
-				operator: 'has',
-				comparator: ['writer']
-			},
-			{
-				type: 'filter',
-				attribute: 'betaOptIn',
-				operator: '==',
-				comparator: true
-			}
+			[
+
+				{
+					type: 'filter',
+					attribute: 'role',
+					operator: 'has',
+					comparator: ['writer']
+				},
+				{
+					type: 'filter',
+					attribute: 'betaOptIn',
+					operator: '==',
+					comparator: true
+				}
+			]
+		]
+	}
+	,'example_OR_flag': {
+		name: 'Example AND Flag',
+		description: 'This flag is active if either rule evaluates to TRUE (user has role writer, OR user has betaOptIn=true)',
+		active: true,
+		rules: [
+			[
+
+				{
+					type: 'filter',
+					attribute: 'role',
+					operator: 'has',
+					comparator: ['writer']
+				}
+			],
+			[
+				{
+					type: 'filter',
+					attribute: 'betaOptIn',
+					operator: '==',
+					comparator: true
+				}
+			]
 		]
 	}
 	,'example_inactive_flag': {
 		name: 'Example Inactive Flag',
-		description: 'This flag is false for everyone because it is inactive',
+		description: 'This flag is inactive',
 		active: false,
-		baseState: false,
 		rules: []
 	}
 }
@@ -137,14 +164,6 @@ This is likely to change, but for now here's what they look like:
 - `nobody`: Flag is OFF for all users
 - `everybody`: Flag is ON for all users
 - More TBD? If you have ideas, [hit me up!](https://github.com/atuttle/semaphore/issues)
-
-#### AND vs. OR
-
-Flags can have multiple rules. At present, Semaphore only supports flag-wide AND/OR: You can require that `ALL` of the rules evaluate to TRUE, or that `ANY` of the rules evaluate to TRUE.
-
-The default is `ANY`. If you want to require all rules match, set `matchRules: 'ALL'` on your flag.
-
-> **Deprecation warning:** In version 1.x the `matchRules` property will be removed in support of [better and/or support](https://adamtuttle.codes/blog/2022/semaphore-0.3-and-1.0/).
 
 # Why not just use config settings?
 
