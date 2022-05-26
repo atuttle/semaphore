@@ -2,13 +2,10 @@
 
 A minimalist Feature Flag engine for CFML apps
 
-[![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml)
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![Tests](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml/badge.svg)](https://github.com/atuttle/semaphore/actions/workflows/main_tests.yml) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 ### Minimalist? What's included?
 
